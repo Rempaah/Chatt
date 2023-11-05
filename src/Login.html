@@ -29,7 +29,7 @@
                     Who are you?
                 </div>
                 <div style="display: flex; margin-top: 6%; justify-content: center; border: 1px solid black; border-radius: 15px;">
-                    <input id="username" type="text" style="width: 100%; margin: 4% 3%; font-size: 18px;" placeholder="Enter your username..." onkeypress="enter(event)">
+                    <input id="username" type="text" style="width: 100%; margin: 4% 3%; font-size: 18px;" placeholder="Enter your username..." onkeypress="onkeypress(event)">
                 </div>
                 <div style="display: flex; margin-top: 12%; margin-left: auto; margin-right: auto; font-size: 18px; font-family: 'Inter', sans-serif; font-weight: 300; color: #0075FF; cursor: pointer;" onclick="login()">
                     Enter the chat room
@@ -45,16 +45,22 @@
             const xHttp = new XMLHttpRequest();
             xHttp.onload = function()
             {
-                if(xHttp.responseText == "success")
                 window.location = "/chat";
             }
+
+            let red, green, blue;
+            red = Math.floor(Math.random() * 255) + 1;
+            green = Math.floor(Math.random() * 255) + 1;
+            blue = Math.floor(Math.random() * 255) + 1;
+
+            let color = "rgb(" + red + ", " + green + ", " + blue + ")";
             
             xHttp.open("POST", "php/Login.php");
             xHttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-            xHttp.send("username=" + input.value);
+            xHttp.send("username=" + input.value + "&color=" + color);
         }
 
-        function enter(event)
+        function onkeypress(event)
         {
             if(event.key == "Enter")
             {

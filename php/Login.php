@@ -21,11 +21,9 @@
     {
         $row = $result->fetch_assoc();
         $insert = $mysqli->prepare("INSERT INTO chatter (username, color) VALUES (?, ?)");
-        $color = "hahah";
-        $insert->bind_param("ss", htmlspecialchars($_POST["username"]), $color);
+        $insert->bind_param("ss", htmlspecialchars($_POST["username"]), htmlspecialchars($_POST["color"]));
         $insert->execute();
     }
 
     $_SESSION["username"] = $_POST["username"];
-    echo "success"
 ?>
