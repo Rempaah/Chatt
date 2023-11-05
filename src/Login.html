@@ -50,7 +50,8 @@
             }
             
             xHttp.open("POST", "php/Login.php");
-            xHttp.send("username=" + login.value);
+            xHttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+            xHttp.send("username=" + input.value);
         }
 
         function enter(event)
