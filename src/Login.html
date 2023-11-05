@@ -29,13 +29,37 @@
                     Who are you?
                 </div>
                 <div style="display: flex; margin-top: 6%; justify-content: center; border: 1px solid black; border-radius: 15px;">
-                    <input type="text" style="width: 100%; margin: 4% 3%; font-size: 18px;" placeholder="Enter your username...">
+                    <input id="username" type="text" style="width: 100%; margin: 4% 3%; font-size: 18px;" placeholder="Enter your username..." onkeypress="enter(event)">
                 </div>
-                <div style="display: flex; margin-top: 12%; justify-content: center; font-size: 18px; font-family: 'Inter', sans-serif; font-weight: 300; color: #0075FF;">
+                <div style="display: flex; margin-top: 12%; margin-left: auto; margin-right: auto; font-size: 18px; font-family: 'Inter', sans-serif; font-weight: 300; color: #0075FF; cursor: pointer;" onclick="login()">
                     Enter the chat room
                 </div>
             </div>
         </div>
     </div>
+    <script>
+        let input = document.getElementById("username");
+        
+        function login()
+        {
+            const xHttp = new XMLHttpRequest();
+            xHttp.onload = function()
+            {
+                if(xHttp.responseText == "success")
+                window.location = "/chat";
+            }
+            
+            xHttp.open("POST", "php/Login.php");
+            xHttp.send("username=" + login.value);
+        }
+
+        function enter(event)
+        {
+            if(event.key == "Enter")
+            {
+                login();
+            }
+        }
+    </script>
 </body>
 </html>
